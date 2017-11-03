@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Advanced features Tag Input demo</title>
+		<meta charset="utf-8">
+
+		<script src="taginput.js"></script>
+		<link rel="stylesheet" href="demo.css">
+	</head>
+
+	<body>
+		<h1>Advanced features demo</h1>
+
+		<p>Please insert some tags. Use a comma or a semicolon to separate them or press enter to transform the current text into a tag.</p>
+
+		<div contenteditable="true" id="tags">
+			<span data-tag-model class="tag"><span data-tag-placeholder></span> <span data-tag-delete>&times;</span></span>
+		</div>
+
+		<script>
+			function prependLog(text) {
+				var li = document.createElement('li'),
+					logs = document.getElementById('logs')
+				li.textContent = text
+
+				if(logs.firstChild) {
+					logs.insertBefore(li, logs.firstChild)
+				} else {
+					logs.appendChild(li)
+				}
+			}
+
+			var ti = new UniversalTagInput(document.getElementById('tags'), {
+				// Enable the colon, too
+				pattern: /,+|;+|\n+/,
+
+				added: function (tagName) {
+					prependLog('Added tag ' + tagName)
+				},
+
+				removed: function (tagName) {
+					prependLog('Removed tag ' + tagName)
+				},
+			}, ['Demo', 'Advanced', 'Tag Input'])
+		</script>
+
+		<p>In this demo you can see:</p>
+		<ul>
+			<li>how to prepopulate the input;</li>
+			<li>how to manipulate it via class methods;</li>
+			<li>how to change tag separators;</li>
+			<li>how you can use the callbacks that you can specify in the configuration (in this case to populate the log).</li>
+		</ul>
+		<p>Still no third parties libraries are used.</p>
+
+		<p>
+			<button onclick="alert(ti.getTags())">Show tags (alert)</button>
+			<button onclick="console.log(ti.getTags())">Show tags (console)</button>
+			<button onclick="ti.clear(true)">Clear input</button>
+			<button onclick="ti.add('test', true)">Add tag <i>test</i></button>
+			<button onclick="ti.delete('test', true)">Delete tag <i>test</i></button>
+		</p>
+
+		<h2>Log</h2>
+		<ul id="logs">
+		</ul>
+
+	</body>
+</html>

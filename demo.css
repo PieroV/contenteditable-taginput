@@ -1,0 +1,33 @@
+/*
+ * Ok, using px for dimensions sucks, but this is just for the demo purpose.
+ * This file isn't needed to make the input work.
+ */
+html {
+	font: 22px sans-serif;
+}
+
+#tags {
+	border: 1px solid #ccc;
+	line-height: 36px; /* 22 + 2 * (1 + 2 + 2) + some padding */
+}
+
+.tag {
+	background: #EEEEEE;
+	border: 1px solid #666;
+	padding: 2px;
+	margin: 2px;
+}
+
+#tags .tag:last-child {
+	margin-right: 0.5em;
+}
+
+[data-tag-delete] {
+	cursor: default;
+	padding: 0 2px;
+}
+
+[data-tag-delete]:hover {
+	background: #DA4437;
+	color: #EEEEEE;
+}

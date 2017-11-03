@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Tag Input demo</title>
+		<meta charset="utf-8">
+
+		<script src="taginput.js"></script>
+		<link rel="stylesheet" href="demo.css">
+	</head>
+
+	<body>
+		<h1>Basic demo</h1>
+
+		<p>Please insert some tags. Use a comma to separate them or press enter to transform the current text into a tag.</p>
+
+		<div contenteditable="true" id="tags">
+			<span data-tag-model class="tag"><span data-tag-placeholder></span> <span data-tag-delete>&times;</span></span>
+		</div>
+
+		<script>
+			var ti = new UniversalTagInput(document.getElementById('tags'))
+		</script>
+
+		<p>If you look at the source of this page, you'll see that there isn't any additional library.</p>
+	</body>
+</html>

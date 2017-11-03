@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Suggestions Tag Input demo</title>
+		<meta charset="utf-8">
+
+		<script src="taginput.js"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+		<style>
+			#tags .badge { margin-right: 0.3rem; }
+			#tags .badge:last-child { margin-right: 0.5rem; }
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>Advanced features demo</h1>
+
+			<p>Please insert some tags. Use a comma to separate them or press enter to transform the current text into a tag.</p>
+
+			<div contenteditable="true" id="tags" class="form-control">
+				<span data-tag-model class="badge badge-pill badge-primary">
+					<span data-tag-placeholder></span>
+					<i class="fa fa-times" data-tag-delete></i>
+				</span>
+			</div>
+
+			<script>
+				// Thanks jQuery example :)
+				var availableTags = [
+					"ActionScript",
+					"AppleScript",
+					"Asp",
+					"BASIC",
+					"C",
+					"C++",
+					"Clojure",
+					"COBOL",
+					"ColdFusion",
+					"Erlang",
+					"Fortran",
+					"Groovy",
+					"Haskell",
+					"Java",
+					"JavaScript",
+					"Lisp",
+					"Perl",
+					"PHP",
+					"Python",
+					"Ruby",
+					"Scala",
+					"Scheme"
+				]
+
+				function resetSource(currentTags) {
+					var source = []
+
+					/* Just for demo purposes, for real world app find something
+					smarter... */
+					for(var i = 0; i < availableTags.length; i++) {
+						if(currentTags.indexOf(availableTags[i]) == -1) {
+							source.push(availableTags[i])
+						}
+					}
+
+					$('#tags').autocomplete('option', 'source', source)
+				}
+
+				var ti = new UniversalTagInput(document.getElementById('tags'), {
+					added: function (tagName) {
+						resetSource(ti.getTags())
+					},
+
+					removed: function (tagName) {
+						resetSource(ti.getTags())
+					},
+
+					suggest: function (text) {
+						$('#tags').autocomplete('search', text)
+					},
+				})
+
+				$('#tags').autocomplete({
+					source: availableTags,
+
+					focus: function(event, ui) {
+						event.preventDefault()
+						ti.completeSuggestion(ui.item.value, false)
+					},
+
+					select: function(event, ui) {
+						console.log('selecting')
+						event.preventDefault()
+						ti.completeSuggestion(ui.item.value)
+					},
+				})
+			</script>
+
+			<p>
+				This demo shows how you can use Bootstrap elements to create the
+				tags field, and how you can implement suggestions with jQuery.
+			</p>
+		</div>
+
+	</body>
+</html>
