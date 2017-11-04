@@ -1,4 +1,11 @@
 /**
+ * WARNING: Don't use this project, unless you want to be compatible only with
+ * Chrome.
+ * This project seemed to me quite a good idea, until I did cross browser
+ * testing.
+ */
+
+/**
  * Universal Tag Input: a pure DOM tag input.
  *
  * This library helps creating a very customizable tag input and it isn't
@@ -7,11 +14,6 @@
  * The library relies on "contenteditable" HTML attribute, that has been there
  * forever, and on MutationObserver, a class that has been released in mid of
  * 2012 in Firefox and has been added in 2013 to all other major browsers.
- *
- * See the examples for information on how to use the library.
- *
- * I, Pier Angelo Vendrame, am the only author of this library and I release it
- * in the public domain.
  */
 
 'use strict'

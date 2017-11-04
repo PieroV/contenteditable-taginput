@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>The strange behaviour of Firefox</title>
+		<style>
+			div { background: yellow; }
+			span { background: red; }
+		</style>
+	</head>
+
+	<body>
+		<h1>Firefox strange behaviour</h1>
+
+		<div contenteditable="true">
+			<span contenteditable="false">test 1</span>
+			<span contenteditable="false">Second test</span>
+		</div>
+
+		<p>Go next to the one and press backspace: you'll add spaces between test and 1.</p>
+		<p>Now go next to "second test" and press backspace: nothing will happen...</p>
+
+		<p>Chrome's behaviour: you'll be able to delete the second span, but not the first</p>
+	</body>
+</html>
